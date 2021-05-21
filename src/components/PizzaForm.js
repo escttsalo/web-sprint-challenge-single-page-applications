@@ -1,6 +1,9 @@
 
 
-export default function PizzaForm() {
+export default function PizzaForm(props) {
+
+    const {values, change, submit, disabled, errors } from props
+
     return (
         <form id='pizza-form'>
             <h2>Build your pizza!</h2>
@@ -9,8 +12,8 @@ export default function PizzaForm() {
                 <h3>Name of Order</h3>
                 <h5>Required</h5>
                     <input
-                        value={''}
-                        // onChange={null}
+                        value={values.name}
+                        onChange={change}
                         name='name'
                         id='name-input'
                         type='text'
