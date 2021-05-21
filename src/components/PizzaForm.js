@@ -72,6 +72,22 @@ export default function PizzaForm() {
                     />Sausage
                 </label>
             </div>
+
+            <div className='form-group special'>
+                <h3>Special Instructions</h3>
+                <input 
+                    value={''}
+                    // onChange={null}
+                    name='special'
+                    id='special-text'
+                    type='text'
+                />
+            </div>
+
+            <div className='form-group submit'>
+                <h3>Ready?</h3>
+                <button disabled={true} id='order-button'>Submit</button>
+            </div>
         </form>
     )
 }
