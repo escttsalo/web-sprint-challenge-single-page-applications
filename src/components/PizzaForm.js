@@ -31,7 +31,46 @@ export default function PizzaForm() {
                         <option value='Extra Large'>XLarge</option>
                         <option value='Texas'>I'm from Texas!</option>
                     </select>
-                    
+            </div>
+
+            <div className='form-group checkboxes'>
+                <h3>Choose your Toppings</h3>
+                <label>
+                    <input 
+                        onChange={null}
+                        type='checkbox'
+                        name='pepperoni'
+                        checked={false}
+                    />
+                    Pepperoni
+                </label>
+
+                <label>
+                    <input 
+                        onChange={null}
+                        type='checkbox'
+                        name='canadian-bacon'
+                        checked={false}
+                    />Canadian Bacon
+                </label>
+
+                <label>
+                    <input 
+                        onChange={null}
+                        type='checkbox'
+                        name='bacon'
+                        checked={false}
+                    />Bacon
+                </label>
+
+                <label>
+                    <input 
+                        onChange={null}
+                        type='checkbox'
+                        name='sausage'
+                        checked={false}
+                    />Sausage
+                </label>
             </div>
         </form>
     )
