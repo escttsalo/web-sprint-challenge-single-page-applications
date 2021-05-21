@@ -4,9 +4,9 @@ export default function Home() {
 
     const history= useHistory()
 
-    // const routeToForm= () => {
-    //     history.push('/pizza')
-    // }
+    const routeToForm= () => {
+        history.push('/pizza')
+    }
 
     return (
         <div className='home-wrapper'>
@@ -16,7 +16,7 @@ export default function Home() {
                 alt=''
             />
             <button
-            onClick={null}
+            onClick={routeToForm}
             id='order-pizza'
             >Pizza?
             </button>
