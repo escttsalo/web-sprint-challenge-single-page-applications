@@ -2,18 +2,31 @@
 
 export default function PizzaForm(props) {
 
-    const {values, change, submit, disabled, errors } from props
+    const {values, change, submit, disabled, errors } = props
+
+    const onSubmit = e => {
+        e.preventDefault()
+        submit()
+    }
+
+    const onChange = e => {
+        const { name, value, type, checked } = e.target;
+        const newVal = type === 'checkbox' ? checked : value;
+        change(name, newVal)
+    }
+
 
     return (
-        <form id='pizza-form'>
+        <form id='pizza-form' onSubmit={onSubmit}>
             <h2>Build your pizza!</h2>
 
             <div className='form-group inputs'>
                 <h3>Name of Order</h3>
                 <h5>Required</h5>
+                <div>{errors.name}</div>
                     <input
                         value={values.name}
-                        onChange={change}
+                        onChange={onChange}
                         name='name'
                         id='name-input'
                         type='text'
@@ -21,9 +34,10 @@ export default function PizzaForm(props) {
 
                 <h3>Choice of Size</h3>
                 <h5>Required</h5>
+                <div>{errors.size}</div>
                     <select 
-                        onChange={null}
-                        value={''}
+                        onChange={onChange}
+                        value={values.size}
                         name='size'
                         id='size-dropdown'
                     >
@@ -40,38 +54,38 @@ export default function PizzaForm(props) {
                 <h3>Choose your Toppings</h3>
                 <label>
                     <input 
-                        onChange={null}
+                        onChange={onChange}
                         type='checkbox'
                         name='pepperoni'
-                        checked={false}
+                        checked={values.pepperoni}
                     />
                     Pepperoni
                 </label>
 
                 <label>
                     <input 
-                        onChange={null}
+                        onChange={onChange}
                         type='checkbox'
-                        name='canadian-bacon'
-                        checked={false}
+                        name='canadian_bacon'
+                        checked={values.canadian_bacon}
                     />Canadian Bacon
                 </label>
 
                 <label>
                     <input 
-                        onChange={null}
+                        onChange={onChange}
                         type='checkbox'
                         name='bacon'
-                        checked={false}
+                        checked={values.bacon}
                     />Bacon
                 </label>
 
                 <label>
                     <input 
-                        onChange={null}
+                        onChange={onChange}
                         type='checkbox'
                         name='sausage'
-                        checked={false}
+                        checked={values.sausage}
                     />Sausage
                 </label>
             </div>
@@ -79,8 +93,8 @@ export default function PizzaForm(props) {
             <div className='form-group special'>
                 <h3>Special Instructions</h3>
                 <input 
-                    value={''}
-                    // onChange={null}
+                    value={values.special}
+                    onChange={onChange}
                     name='special'
                     id='special-text'
                     type='text'
@@ -89,7 +103,7 @@ export default function PizzaForm(props) {
 
             <div className='form-group submit'>
                 <h3>Ready?</h3>
-                <button disabled={true} id='order-button'>Submit</button>
+                <button disabled={false} id='order-button'>Submit</button>
             </div>
         </form>
     )
