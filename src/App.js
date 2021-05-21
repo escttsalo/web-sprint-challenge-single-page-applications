@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Route, Link, useHistory } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+import * as yup from 'yup';
+import schema from './validation/pizzaSchema'
 
 import Home from './components/Home'
 import PizzaForm from './components/PizzaForm'
@@ -46,8 +48,17 @@ const App = () => {
       .finally(setFormVals(pizzaFormInit))
   }
 
+
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then( () => setFormErrors({...setFormErrors, [name]: ''}))
+      .catch( err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+  }
+
   //On Input Change
   const changeForm = (name, value) => {
+    validate(name, value)
     setFormVals(
       {...formVals, [name]: value}
     )
@@ -64,6 +75,10 @@ const App = () => {
 
     postOrder(newOrder)
   }
+
+  useEffect( () => {
+    schema.isValid(formVals).then(valid => setDisabled(!valid))
+  }, [formVals])
 
   return (
     <div className='container'>

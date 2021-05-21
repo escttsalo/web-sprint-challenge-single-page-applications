@@ -1,12 +1,14 @@
-
+import { useHistory } from 'react-router-dom'
 
 export default function PizzaForm(props) {
 
     const {values, change, submit, disabled, errors } = props
+    const history = useHistory()
 
     const onSubmit = e => {
         e.preventDefault()
         submit()
+        history.push('/')
     }
 
     const onChange = e => {
@@ -42,11 +44,11 @@ export default function PizzaForm(props) {
                         id='size-dropdown'
                     >
                         <option value=''>Select</option>
-                        <option value='Small'>Small</option>
-                        <option value='Medium'>Medium</option>
-                        <option value='Large'>Large</option>
-                        <option value='Extra Large'>XLarge</option>
-                        <option value='Texas'>I'm from Texas!</option>
+                        <option value='small'>Small</option>
+                        <option value='medium'>Medium</option>
+                        <option value='large'>Large</option>
+                        <option value='extra large'>XLarge</option>
+                        <option value='texas'>I'm from Texas!</option>
                     </select>
             </div>
 
@@ -103,7 +105,7 @@ export default function PizzaForm(props) {
 
             <div className='form-group submit'>
                 <h3>Ready?</h3>
-                <button disabled={false} id='order-button'>Submit</button>
+                <button disabled={disabled} id='order-button'>Submit</button>
             </div>
         </form>
     )
